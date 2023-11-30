@@ -102,8 +102,8 @@ moon_sign_degrees = get_sign_degrees(moon_longitude)
 mercury_sign_degrees = get_sign_degrees(mercury_longitude)
 venus_sign_degrees = get_sign_degrees(venus_longitude)
 mars_sign_degrees = get_sign_degrees(mars_longitude)
-jupiter_sign_degrees = get_zodiac_sign(jupiter_longitude)
-saturn_sign_degrees = get_zodiac_sign(saturn_longitude)
+jupiter_sign_degrees = get_sign_degrees(jupiter_longitude)
+saturn_sign_degrees = get_sign_degrees(saturn_longitude)
 
 
 # Calculate house cusps
@@ -111,28 +111,28 @@ house_cusps = calculate_house_cusps(
     jd, location_latitude, location_longitude, selected_house_system_code)
 
 print(
-    f"\nEcliptic Longitude of the Sun: {sun_longitude:.2f} degrees."
-    f"\nThe Sun is {sun_sign_degrees:.2f} degrees in {sun_sign}."
+    f"\nEcliptic Longitude of the Sun: {float(sun_longitude):.2f} degrees."
+    f"\nThe Sun is {float(sun_sign_degrees):.2f} degrees in {sun_sign}."
 
-    f"\n\nEcliptic longitude of the Moon: {moon_longitude:.2f} degrees."
-    f"\nThe Moon is {moon_sign_degrees:.2f} degrees in {moon_sign}."
+    f"\n\nEcliptic longitude of the Moon: {float(moon_longitude):.2f} degrees."
+    f"\nThe Moon is {float(moon_sign_degrees):.2f} degrees in {moon_sign}."
 
-    f"\n\nEcliptic longitude of Mercury: {mercury_longitude:.2f} degrees."
-    f"\nMercury is {mercury_sign_degrees:.2f} degrees in {mercury_sign}."
+    f"\n\nEcliptic longitude of Mercury: {float(mercury_longitude):.2f} degrees."
+    f"\nMercury is {float(mercury_sign_degrees):.2f} degrees in {mercury_sign}."
 
-    f"\n\nEcliptic longitude of Venus: {venus_longitude:.2f} degrees."
-    f"\nVeus is {venus_sign_degrees:.2f} degrees in {venus_sign}."
+    f"\n\nEcliptic longitude of Venus: {float(venus_longitude):.2f} degrees."
+    f"\nVenus is {float(venus_sign_degrees):.2f} degrees in {venus_sign}."
 
-    f"\n\nEcliptic longitude of Mars: {mars_longitude:.2f} degrees."
-    f"\nMars is {mars_sign_degrees:.2f} degrees in {mars_sign}."
+    f"\n\nEcliptic longitude of Mars: {float(mars_longitude):.2f} degrees."
+    f"\nMars is {float(mars_sign_degrees):.2f} degrees in {mars_sign}."
 
-    f"\n\nEcliptic longitude of Jupiter: {jupiter_longitude:.2f} degrees."
-    f"\nJupiter is {jupiter_sign_degrees:.2f} degrees in {jupiter_sign}."
+    f"\n\nEcliptic longitude of Jupiter: {float(jupiter_longitude):.2f} degrees."
+    f"\nJupiter is {float(jupiter_sign_degrees):.2f} degrees in {jupiter_sign}."
 
-    f"\n\nEcliptic longitude of Saturn: {saturn_longitude:.2f} degrees."
-    f"\nSaturn is {saturn_sign_degrees:.2f} degrees in {saturn_sign}."
-
+    f"\n\nEcliptic longitude of Saturn: {float(saturn_longitude):.2f} degrees."
+    f"\nSaturn is {float(saturn_sign_degrees):.2f} degrees in {saturn_sign}."
 )
+
 
 print(
     f"\nYour house system: {selected_house_system}."
