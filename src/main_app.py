@@ -63,8 +63,11 @@ selected_house_system = house_systems[user_choice]
 selected_house_system_code = get_house_system_code(selected_house_system)
 
 # Calculate the ascendant
-chart_ascendant = calculate_ascendant(
+ascendant_longitude = calculate_ascendant(
     jd, location_latitude, location_longitude, selected_house_system_code)
+
+ascendant_sign_degrees = get_sign_degrees(ascendant_longitude)
+ascendant_sign = get_zodiac_sign(ascendant_longitude)
 
 # Calculation of ecliptic longitude of planets
 sun_longitude = calculate_ecliptic_longitude(
@@ -135,8 +138,11 @@ print(
 
 
 print(
-    f"\nYour house system: {selected_house_system}."
-    f"\nThe degree of the Ascendant is: {chart_ascendant}"
+    f"\nThe degree of the Ascendant is: {float(ascendant_longitude):.2f}"
+    f"\nThe Ascendant is {float(ascendant_sign_degrees):.2f} degrees in {ascendant_sign}."
 )
 
-print(f"{house_cusps}")
+print(
+    f"\nYour selected house system: {selected_house_system}."
+    f"\n{house_cusps}"
+)
