@@ -1,6 +1,6 @@
 from Dependencies.utilities import *
 
-print("Welcome to Astrologer\n")
+print("\nWelcome to Ptolemy. The free Astrology software.")
 
 city = input("\nEnter the city: ")
 country = input("Enter the country: ")
