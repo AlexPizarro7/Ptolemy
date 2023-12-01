@@ -86,6 +86,24 @@ def get_sign_degrees(ecliptic_longitude):
     raise ValueError("Invalid ecliptic longitude")
 
 
+def get_traditional_decan(sign, longitude):
+    # Decans dictionary (Chaldean order)
+    decans = {
+        'Aries': [('Mars', 0, 10), ('Sun', 10, 20), ('Venus', 20, 30)],
+        'Taurus': [('Mercury', 0, 10), ('Moon', 10, 20), ('Saturn', 20, 30)],
+        'Gemini': [('Jupiter', 0, 10), ('Mars', 10, 20), ('Sun', 20, 30)],
+        'Cancer': [('Venus', 0, 10), ('Mercury', 10, 20), ('Moon', 20, 30)],
+        'Leo': [('Saturn', 0, 10), ('Jupiter', 10, 20), ('Mars', 20, 30)],
+        'Virgo': []
+        # ... continue for each sign
+    }
+
+    for ruler, start, end in decans.get(sign, []):
+        if start <= longitude < end:
+            return ruler  # Returning only the ruler of the decan
+    return None
+
+
 def get_house_system_code(house_system_name):
     """
     Converts a house system name to the corresponding Swiss Ephemeris code.
