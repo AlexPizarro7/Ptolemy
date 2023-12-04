@@ -14,7 +14,7 @@ As a work in progress, Ptolemy aims to remain completely free and accessible to 
 - **User-Friendly Input:** Simple interface for entering city, country, date, and time to generate a detailed astrological chart.
 
 ## How to Use
-Input the required information - city, country, date, and time - and Ptolemy will provide an in-depth astrological chart encompassing planetary positions and ascendant details.
+Input the required information - city, country, date, and time - and Ptolemy will provide an in-depth astrological information encompassing planetary positions subsequent details.
 
 ## Project Status: Work in Progress
 
