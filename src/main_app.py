@@ -109,6 +109,8 @@ mars_sign_degrees = get_sign_degrees(mars_longitude)
 jupiter_sign_degrees = get_sign_degrees(jupiter_longitude)
 saturn_sign_degrees = get_sign_degrees(saturn_longitude)
 
+# calculation of the decans that the planetsa are in
+sun_decan = get_traditional_decan(sun_sign, sun_sign_degrees)
 
 # Calculate house cusps
 house_cusps = calculate_house_cusps(
@@ -117,6 +119,7 @@ house_cusps = calculate_house_cusps(
 print(
     f"\nEcliptic Longitude of the Sun: {float(sun_longitude):.2f} degrees."
     f"\nThe Sun is {float(sun_sign_degrees):.2f} degrees in {sun_sign}."
+    f"\nThe Sun is in the decan ruled by {sun_decan}."
 
     f"\n\nEcliptic longitude of the Moon: {float(moon_longitude):.2f} degrees."
     f"\nThe Moon is {float(moon_sign_degrees):.2f} degrees in {moon_sign}."

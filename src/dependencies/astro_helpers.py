@@ -86,7 +86,7 @@ def get_sign_degrees(ecliptic_longitude):
     raise ValueError("Invalid ecliptic longitude")
 
 
-def get_traditional_decan(sign, longitude):
+def get_traditional_decan(sign, sign_degrees):
     # Decans dictionary (Chaldean order)
     decans = {
         'Aries': [('Mars', 0, 10), ('Sun', 10, 20), ('Venus', 20, 30)],
@@ -94,12 +94,17 @@ def get_traditional_decan(sign, longitude):
         'Gemini': [('Jupiter', 0, 10), ('Mars', 10, 20), ('Sun', 20, 30)],
         'Cancer': [('Venus', 0, 10), ('Mercury', 10, 20), ('Moon', 20, 30)],
         'Leo': [('Saturn', 0, 10), ('Jupiter', 10, 20), ('Mars', 20, 30)],
-        'Virgo': []
-        # ... continue for each sign
+        'Virgo': [('Sun', 0, 10), ('Venus', 10, 20), ('Mercury', 20, 30)],
+        'Libra': [('Moon', 0, 10), ('Saturn', 10, 20), ('Jupiter', 20, 30)],
+        'Scorpio': [('Mars', 0, 10), ('Sun', 10, 20), ('Venus', 20, 30)],
+        'Sagittarius': [('Mercury', 0, 10), ('Moon', 10, 20), ('Saturn', 20, 30)],
+        'Capricorn': [('Jupiter', 0, 10), ('Mars', 10, 20), ('Sun', 20, 30)],
+        'Aquarius': [('Venus', 0, 10), ('Mercury', 10, 20), ('Moon', 20, 30)],
+        'Pisces': [('Saturn', 0, 10), ('Jupiter', 10, 20), ('Mars', 20, 30)]
     }
 
     for ruler, start, end in decans.get(sign, []):
-        if start <= longitude < end:
+        if start <= sign_degrees < end:
             return ruler  # Returning only the ruler of the decan
     return None
 
