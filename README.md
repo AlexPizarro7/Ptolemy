@@ -3,7 +3,7 @@
 ## Overview
 Ptolemy is an evolving Python-based astrology software, currently in its development stage, with the ambition of becoming a comprehensive and accessible software for those interested in the art of astrology.
 
-As a work in progress, Ptolemy aims to remain completely free and accessible to anyone, unlike other traditional astrology software options. Ptolemy is being crafted to cater to a broad spectrum of astrological interests, including Natal, Mundane, and Horary astrology.
+Ptolemy aims to remain completely free and accessible to anyone. Unlike other traditional astrology software options, Ptolemy is focused on helping individuals not only visualize astrological charts but also analyze their data. Ptolemy is being crafted to cater to a broad spectrum of astrological interests and branches, including Natal, Mundane, and Horary astrology.
 
 ## Current Features
 - **Planetary Positions:** Leverages Swisseph to calculate precise planetary alignments for any given date and time.
@@ -14,7 +14,7 @@ As a work in progress, Ptolemy aims to remain completely free and accessible to 
 - **User-Friendly Input:** Simple interface for entering city, country, date, and time to generate a detailed astrological chart.
 
 ## How to Use
-Input the required information - city, country, date, and time - and Ptolemy will provide an in-depth astrological chart encompassing planetary positions and ascendant details.
+Input the required information - city, country, date, and time - and Ptolemy will provide an in-depth astrological information encompassing planetary positions subsequent details.
 
 ## Project Status: Work in Progress
 
