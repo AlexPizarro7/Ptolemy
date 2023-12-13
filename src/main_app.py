@@ -1,5 +1,5 @@
 from dependencies.astro_calculations import *
-from dependencies.astro_helpers import *
+from dependencies.astro_utils import *
 
 print("\nWelcome to Ptolemy. The free Astrology software.")
 
