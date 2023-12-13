@@ -124,8 +124,10 @@ print(
     f"\n\nEcliptic longitude of the Moon: {float(moon_longitude):.2f} degrees."
     f"\nThe Moon is {float(moon_sign_degrees):.2f} degrees in {moon_sign}."
 
-    f"\n\nEcliptic longitude of Mercury: {float(mercury_longitude):.2f} degrees."
-    f"\nMercury is {float(mercury_sign_degrees):.2f} degrees in {mercury_sign}."
+    f"\n\nEcliptic longitude of Mercury: {
+        float(mercury_longitude):.2f} degrees."
+    f"\nMercury is {float(mercury_sign_degrees):.2f} degrees in {
+        mercury_sign}."
 
     f"\n\nEcliptic longitude of Venus: {float(venus_longitude):.2f} degrees."
     f"\nVenus is {float(venus_sign_degrees):.2f} degrees in {venus_sign}."
@@ -133,8 +135,10 @@ print(
     f"\n\nEcliptic longitude of Mars: {float(mars_longitude):.2f} degrees."
     f"\nMars is {float(mars_sign_degrees):.2f} degrees in {mars_sign}."
 
-    f"\n\nEcliptic longitude of Jupiter: {float(jupiter_longitude):.2f} degrees."
-    f"\nJupiter is {float(jupiter_sign_degrees):.2f} degrees in {jupiter_sign}."
+    f"\n\nEcliptic longitude of Jupiter: {
+        float(jupiter_longitude):.2f} degrees."
+    f"\nJupiter is {float(jupiter_sign_degrees):.2f} degrees in {
+        jupiter_sign}."
 
     f"\n\nEcliptic longitude of Saturn: {float(saturn_longitude):.2f} degrees."
     f"\nSaturn is {float(saturn_sign_degrees):.2f} degrees in {saturn_sign}."
@@ -143,7 +147,8 @@ print(
 
 print(
     f"\nThe degree of the Ascendant is: {float(ascendant_longitude):.2f}"
-    f"\nThe Ascendant is {float(ascendant_sign_degrees):.2f} degrees in {ascendant_sign}."
+    f"\nThe Ascendant is {float(ascendant_sign_degrees):.2f} degrees in {
+        ascendant_sign}."
 )
 
 print(
