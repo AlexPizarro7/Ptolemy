@@ -86,6 +86,167 @@ def get_sign_degrees(ecliptic_longitude):
     raise ValueError("Invalid ecliptic longitude")
 
 
+def is_planet_in_its_traditional_domicile(planet, planet_sign):
+    planet_rulerships = {
+        'Sun': 'Leo',
+        'Moon': 'Cancer',
+        'Mercury': ['Gemini', 'Virgo'],
+        'Venus': ['Taurus', 'Libra'],
+        'Mars': ['Aries', 'Scorpio'],
+        'Jupiter': ['Sagittarius', 'Pisces'],
+        'Saturn': ['Capricorn', 'Aquarius'],
+    }
+
+    # Check if the sign is one of the ruling signs for the planet
+    ruling_signs = planet_rulerships.get(planet)
+    # If the planet rules multiple signs (Mercury, Venus, etc.)
+    if isinstance(ruling_signs, list):
+        return planet_sign in ruling_signs
+    else:
+        return planet_sign == ruling_signs
+
+
+def is_planet_in_its_traditional_exaltation(planet, planet_sign):
+    planet_exaltations = {
+        'Sun': 'Aries',
+        'Moon': 'Taurus',
+        'Mercury': 'Virgo',
+        'Venus': 'Pisces',
+        'Mars': 'Capricorn',
+        'Jupiter': 'Cancer',
+        'Saturn': 'Libra',
+    }
+
+    exaltation_sign = planet_exaltations.get(planet)
+    return planet_sign == exaltation_sign
+
+
+def is_planet_super_exalted(planet, planet_sign, planet_degree):
+    # Dictionary mapping planets to their exaltation sign and specific super exaltation degree
+    planet_super_exaltations = {
+        'Sun': ('Aries', 19),
+        'Moon': ('Taurus', 3),
+        'Mercury': ('Virgo', 15),
+        'Venus': ('Pisces', 27),
+        'Mars': ('Capricorn', 28),
+        'Jupiter': ('Cancer', 15),
+        'Saturn': ('Libra', 21),
+        # Add other planets if necessary
+    }
+
+    exaltation_info = planet_super_exaltations.get(planet)
+    if exaltation_info:
+        exaltation_sign, super_exaltation_degree = exaltation_info
+        # Truncate the planet_degree to get the integer part
+        truncated_degree = int(planet_degree)
+        return (planet_sign == exaltation_sign) and (truncated_degree == super_exaltation_degree)
+    else:
+        return False
+
+# def is_planet_in_its_detriment
+
+
+def get_ptolemaic_bound_ruler(sign, degree):
+    # Dictionary structure for Aries bounds. You'll need to extend this to other signs.
+    bounds = {
+        'Aries': [
+            (0, 6, 'Jupiter'),
+            (6, 14, 'Venus'),
+            (14, 21, 'Mercury'),
+            (21, 26, 'Mars'),
+            (26, 30, 'Saturn')
+        ],
+        'Taurus': [
+            (0, 8, 'Venus'),
+            (8, 15, 'Mercury')
+            (15, 22, 'Jupiter')
+            (22, 26, 'Saturn')
+            (26, 30, 'Mars')
+        ],
+        'Gemini': [
+            (0, 7, 'Mercury')
+            (7, 14, 'Jupiter')
+            (14, 21, 'Venus')
+            (21, 25, 'Saturn')
+            (25, 30, 'Mars')
+        ],
+        'Cancer': [
+            (0, 6, 'Mars')
+            (6, 13, 'Jupiter')
+            (13, 20, 'Mercury')
+            (20, 27, 'Venus')
+            (27, 30, 'Saturn')
+        ],
+        'Leo': [
+            (0, 6, 'Saturn')
+            (6, 13, 'Mercury')
+            (13, 19, 'Venus')
+            (19, 25, 'Jupiter')
+            (25, 30, 'Mars')
+        ],
+        'Virgo': [
+            (0, 7, 'Mercury')
+            (7, 13, 'Venus')
+            (13, 18, 'Jupiter')
+            (18, 24, 'Saturn')
+            (24, 30, 'Mars')
+        ],
+        'Libra': [
+            (0, 6, 'Saturn')
+            (6, 11, 'Venus')
+            (11, 19, 'Jupiter')
+            (19, 24, 'Mercury')
+            (24, 30, 'Mars')
+        ],
+        'Scorpio': [
+            (0, 6, 'Mars')
+            (6, 14, 'Jupiter')
+            (14, 21, 'Venus')
+            (21, 27, 'Mercury')
+            (27, 30, 'Saturn')
+        ],
+        'Sagittarius': [
+            (0, 8, 'Jupiter')
+            (8, 14, 'Venus')
+            (14, 19, 'Mercury')
+            (19, 25, 'Saturn')
+            (25, 30, 'Mars')
+        ],
+        'Capricorn': [
+            (0, 6, 'Venus')
+            (6, 12, 'Mercury')
+            (12, 19, 'Jupiter')
+            (19, 25, 'Mars')
+            (25, 30, 'Saturn')
+        ],
+        'Aquarius': [
+            (0, 6, 'Saturn')
+            (6, 12, 'Mercury')
+            (12, 20, 'Venus')
+            (20, 25, 'Jupiter')
+            (25, 30, 'Mars')
+        ],
+        'Pisces': [
+            (0, 8, 'Venus')
+            (8, 14, 'Jupiter')
+            (14, 20, 'Mercury')
+            (20, 26, 'Mars')
+            (26, 30, 'Saturn')
+        ]
+        # Add other signs here...
+    }
+
+    # Check if the sign is in the dictionary
+    if sign in bounds:
+        # Iterate over the bounds for the given sign
+        for lower_bound, upper_bound, ruler in bounds[sign]:
+            if lower_bound <= degree < upper_bound:
+                return ruler
+
+    # If the sign is not found or degree is out of bounds, return an error message
+    return "Invalid sign or degree"
+
+
 def get_traditional_decan(sign, sign_degrees):
     # Decans dictionary (Chaldean order)
     decans = {
