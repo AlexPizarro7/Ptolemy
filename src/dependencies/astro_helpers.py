@@ -264,82 +264,81 @@ def get_ptolemaic_bound_ruler(sign, degree):
         ],
         'Taurus': [
             (0, 8, 'Venus'),
-            (8, 15, 'Mercury')
-            (15, 22, 'Jupiter')
-            (22, 26, 'Saturn')
-            (26, 30, 'Mars')
+            (8, 15, 'Mercury'),
+            (15, 22, 'Jupiter'),
+            (22, 26, 'Saturn'),
+            (26, 30, 'Mars'),
         ],
         'Gemini': [
-            (0, 7, 'Mercury')
-            (7, 14, 'Jupiter')
-            (14, 21, 'Venus')
-            (21, 25, 'Saturn')
-            (25, 30, 'Mars')
+            (0, 7, 'Mercury'),
+            (7, 14, 'Jupiter'),
+            (14, 21, 'Venus'),
+            (21, 25, 'Saturn'),
+            (25, 30, 'Mars'),
         ],
         'Cancer': [
-            (0, 6, 'Mars')
-            (6, 13, 'Jupiter')
-            (13, 20, 'Mercury')
-            (20, 27, 'Venus')
-            (27, 30, 'Saturn')
+            (0, 6, 'Mars'),
+            (6, 13, 'Jupiter'),
+            (13, 20, 'Mercury'),
+            (20, 27, 'Venus'),
+            (27, 30, 'Saturn'),
         ],
         'Leo': [
-            (0, 6, 'Saturn')
-            (6, 13, 'Mercury')
-            (13, 19, 'Venus')
-            (19, 25, 'Jupiter')
-            (25, 30, 'Mars')
+            (0, 6, 'Saturn'),
+            (6, 13, 'Mercury'),
+            (13, 19, 'Venus'),
+            (19, 25, 'Jupiter'),
+            (25, 30, 'Mars'),
         ],
         'Virgo': [
-            (0, 7, 'Mercury')
-            (7, 13, 'Venus')
-            (13, 18, 'Jupiter')
-            (18, 24, 'Saturn')
-            (24, 30, 'Mars')
+            (0, 7, 'Mercury'),
+            (7, 13, 'Venus'),
+            (13, 18, 'Jupiter'),
+            (18, 24, 'Saturn'),
+            (24, 30, 'Mars'),
         ],
         'Libra': [
-            (0, 6, 'Saturn')
-            (6, 11, 'Venus')
-            (11, 19, 'Jupiter')
-            (19, 24, 'Mercury')
-            (24, 30, 'Mars')
+            (0, 6, 'Saturn'),
+            (6, 11, 'Venus'),
+            (11, 19, 'Jupiter'),
+            (19, 24, 'Mercury'),
+            (24, 30, 'Mars'),
         ],
         'Scorpio': [
-            (0, 6, 'Mars')
-            (6, 14, 'Jupiter')
-            (14, 21, 'Venus')
-            (21, 27, 'Mercury')
-            (27, 30, 'Saturn')
+            (0, 6, 'Mars'),
+            (6, 14, 'Jupiter'),
+            (14, 21, 'Venus'),
+            (21, 27, 'Mercury'),
+            (27, 30, 'Saturn'),
         ],
         'Sagittarius': [
-            (0, 8, 'Jupiter')
-            (8, 14, 'Venus')
-            (14, 19, 'Mercury')
-            (19, 25, 'Saturn')
-            (25, 30, 'Mars')
+            (0, 8, 'Jupiter'),
+            (8, 14, 'Venus'),
+            (14, 19, 'Mercury'),
+            (19, 25, 'Saturn'),
+            (25, 30, 'Mars'),
         ],
         'Capricorn': [
-            (0, 6, 'Venus')
-            (6, 12, 'Mercury')
-            (12, 19, 'Jupiter')
-            (19, 25, 'Mars')
-            (25, 30, 'Saturn')
+            (0, 6, 'Venus'),
+            (6, 12, 'Mercury'),
+            (12, 19, 'Jupiter'),
+            (19, 25, 'Mars'),
+            (25, 30, 'Saturn'),
         ],
         'Aquarius': [
-            (0, 6, 'Saturn')
-            (6, 12, 'Mercury')
-            (12, 20, 'Venus')
-            (20, 25, 'Jupiter')
-            (25, 30, 'Mars')
+            (0, 6, 'Saturn'),
+            (6, 12, 'Mercury'),
+            (12, 20, 'Venus'),
+            (20, 25, 'Jupiter'),
+            (25, 30, 'Mars'),
         ],
         'Pisces': [
-            (0, 8, 'Venus')
-            (8, 14, 'Jupiter')
-            (14, 20, 'Mercury')
-            (20, 26, 'Mars')
-            (26, 30, 'Saturn')
+            (0, 8, 'Venus'),
+            (8, 14, 'Jupiter'),
+            (14, 20, 'Mercury'),
+            (20, 26, 'Mars'),
+            (26, 30, 'Saturn'),
         ]
-        # Add other signs here...
     }
 
     # Check if the sign is in the dictionary
