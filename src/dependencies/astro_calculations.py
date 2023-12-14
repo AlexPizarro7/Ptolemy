@@ -6,6 +6,9 @@ from timezonefinder import TimezoneFinder
 import pytz
 
 
+# This function returns the coordinates of a specified city and country
+
+
 def get_coordinates(city, country):
     """
     Calculates the latitude and longitude for a specified city and country using Nominatim.
@@ -95,19 +98,6 @@ def calculate_custom_julian_day(year, month, day, hour, minute, am_pm, lat, lon)
                          custom_datetime_utc.month, custom_datetime_utc.day, ut)
 
     return jd, custom_datetime_utc
-
-
-def get_local_time_from_utc(utc_datetime, latitude, longitude):
-    tf = TimezoneFinder()
-    timezone_str = tf.timezone_at(lat=latitude, lng=longitude)
-
-    if timezone_str is None:
-        print("Timezone could not be determined for the given location.")
-        return utc_datetime  # Return the original UTC time if timezone not found
-
-    timezone_obj = pytz.timezone(timezone_str)
-    local_datetime = utc_datetime.astimezone(timezone_obj)
-    return local_datetime
 
 
 def calculate_ecliptic_longitude(planet_name, jd, location_latitude, location_longitude):
