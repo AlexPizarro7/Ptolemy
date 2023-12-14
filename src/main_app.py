@@ -209,13 +209,17 @@ saturn_in_detriment = is_planet_in_its_traditional_detriment(
 saturn_in_fall = is_planet_in_its_traditional_fall('Saturn', saturn_sign)
 
 
-# Print the Sun's details
-print(f"\nEcliptic Longitude of the Sun: {float(sun_longitude):.2f} degrees.")
+# Print the Report details
+
+print(f"\nAstrologial Report")
+
+print(f"\nThe Sun ☉")
+print(f"The Sun's ecliptic longitude: {float(sun_longitude):.2f} degrees.")
 print(f"The Sun is {float(sun_sign_degrees):.2f} degrees in {sun_sign}.")
 print(f"The Sun is in the Bound ruled by {sun_bound}.")
 print(f"The Sun is in the Decan ruled by {sun_decan}.")
 
-print(f"\nNotes on the Sun's dignity:")
+print(f"\nNotes on the Sun's dignity: ")
 
 if sun_in_domicile:
     print(f"The Sun is in its own Domicile")
@@ -246,29 +250,230 @@ if not any([sun_in_domicile, sun_in_exaltation, sun_is_super_exalted,
             sun_in_detriment, sun_in_fall]):
     print(f"The Sun is Peregrine")
 
-print(f"\nEcliptic longitude of the Moon: {
-      float(moon_longitude):.2f} degrees.")
+print(f"\nThe Moon ☽")
+print(f"The Moon's ecliptic longitude: {float(moon_longitude):.2f} degrees.")
 print(f"The Moon is {float(moon_sign_degrees):.2f} degrees in {moon_sign}.")
+print(f"The Moon is in the Bound ruled by {moon_bound}")
+print(f"The Moon is in the Decan ruled by {moon_decan}")
 
-print(f"\nEcliptic longitude of Mercury: {
-      float(mercury_longitude):.2f} degrees.")
+print(f"\nNotes on the Moon's dignity: ")
+
+if moon_in_domicile:
+    print(f"The Moon is in its own Domicile.")
+
+if moon_in_exaltation:
+    print(f"The Moon is in its own sign of Exaltation.")
+
+if moon_is_super_exalted:
+    print(f"The Moon is in its super Exaltation degrees.")
+
+if moon_in_triplicity:
+    print(f"The Moon is in its own Triplicity sign.")
+
+if moon_bound == 'Moon':
+    print(f"The Moon is in its own Bound")
+
+if moon_decan == 'Moon':
+    print(f"The Moon is in its own Decan")
+
+if moon_in_detriment:
+    print(f"The Moon is in its Detriment")
+
+if moon_in_fall:
+    print(f"The moon is in its own Fall.")
+
+if not any([moon_in_domicile, moon_in_exaltation, moon_is_super_exalted,
+            moon_in_triplicity, moon_bound == 'Moon', moon_decan == 'Moon',
+            moon_in_detriment, moon_in_fall]):
+    print(f"The Moon is Peregrine")
+
+print(f"\nMercury ☿")
+print(f"Mercury's ecliptic longitude: {float(mercury_longitude):.2f} degrees.")
 print(f"Mercury is {float(mercury_sign_degrees)
       :.2f} degrees in {mercury_sign}.")
+print(f"Mercury is in in the bound of {mercury_bound}")
+print(f"Mercury is in the decan of {mercury_decan}")
 
-print(f"\nEcliptic longitude of Venus: {float(venus_longitude):.2f} degrees.")
+print(f"\nNotes on Mercury's dignity: ")
+
+if mercury_in_domicile:
+    print(f"Mercury is in its own Domicile.")
+
+if mercury_in_exaltation:
+    print(f"Mercury is in its own sign of Exaltation.")
+
+if mercury_is_super_exalted:
+    print(f"Mercury is in its super Exaltation degrees.")
+
+if mercury_in_triplicity:
+    print(f"Mercury is in its own Triplicity sign.")
+
+if mercury_bound == 'Mercury':
+    print(f"Mercury is in its own Bound")
+
+if mercury_decan == 'Mercury':
+    print(f"Mercury is in its own Decan")
+
+if mercury_in_detriment:
+    print(f"Mercury is in its Detriment")
+
+if mercury_in_fall:
+    print(f"Mercury is in its own Fall.")
+
+if not any([mercury_in_domicile, mercury_in_exaltation, mercury_is_super_exalted,
+            mercury_in_triplicity, mercury_bound == 'Mercury', mercury_decan == 'Mercury',
+            mercury_in_detriment, mercury_in_fall]):
+    print(f"Mercury is Peregrine")
+
+print(f"\nVenus ♀")
+print(f"Venus' ecliptic longitude: {float(venus_longitude):.2f} degrees.")
 print(f"Venus is {float(venus_sign_degrees):.2f} degrees in {venus_sign}.")
+print(f"Venus is in the bound of {venus_bound}")
+print(f"Venus is in the decan of {venus_decan}")
 
-print(f"\nEcliptic longitude of Mars: {float(mars_longitude):.2f} degrees.")
+print(f"\nNotes on Venus' dignity: ")
+
+if venus_in_domicile:
+    print(f"Venus is in its own Domicile.")
+
+if venus_in_exaltation:
+    print(f"Venus is in its own sign of Exaltation.")
+
+if venus_is_super_exalted:
+    print(f"Venus is in its super Exaltation degrees.")
+
+if venus_in_triplicity:
+    print(f"Venus is in its own Triplicity sign.")
+
+if venus_bound == 'Venus':
+    print(f"Venus is in its own Bound")
+
+if venus_decan == 'Venus':
+    print(f"Venus is in its own Decan")
+
+if venus_in_detriment:
+    print(f"Venus is in its Detriment")
+
+if venus_in_fall:
+    print(f"Venus is in its own Fall.")
+
+if not any([venus_in_domicile, venus_in_exaltation, venus_is_super_exalted,
+            venus_in_triplicity, venus_bound == 'Venus', venus_decan == 'Venus',
+            venus_in_detriment, venus_in_fall]):
+    print(f"Venus is Peregrine")
+
+print(f"\nMars ♂")
+print(f"Mars' ecliptic longitude: {float(mars_longitude):.2f} degrees.")
 print(f"Mars is {float(mars_sign_degrees):.2f} degrees in {mars_sign}.")
+print(f"Mars is in the bound of {mars_bound}")
+print(f"Mars is in the decan of {mars_decan}")
 
-print(f"\nEcliptic longitude of Jupiter: {
+print(f"\nNotes on Mars' dignity: ")
+
+if mars_in_domicile:
+    print(f"Mars is in its own Domicile.")
+
+if mars_in_exaltation:
+    print(f"Mars is in its own sign of Exaltation.")
+
+if mars_is_super_exalted:
+    print(f"Mars is in its super Exaltation degrees.")
+
+if mars_in_triplicity:
+    print(f"Mars is in its own Triplicity sign.")
+
+if mars_bound == 'Mars':
+    print(f"Mars is in its own Bound")
+
+if mars_decan == 'Mars':
+    print(f"Mars is in its own Decan")
+
+if mars_in_detriment:
+    print(f"Mars is in its Detriment")
+
+if mars_in_fall:
+    print(f"Mars is in its own Fall.")
+
+if not any([mars_in_domicile, mars_in_exaltation, mars_is_super_exalted,
+            mars_in_triplicity, mars_bound == 'Mars', mars_decan == 'Mars',
+            mars_in_detriment, mars_in_fall]):
+    print(f"Mars is Peregrine")
+
+print(f"\nJupiter ♃")
+print(f"Jupiter's ecliptic longitude: {
       float(jupiter_longitude):.2f} degrees.")
 print(f"Jupiter is {float(jupiter_sign_degrees)
       :.2f} degrees in {jupiter_sign}.")
+print(f"Jupiter is in the Bound of {jupiter_bound}")
+print(f"Jupiter is in the Decan of {jupiter_decan}")
 
-print(f"\nEcliptic longitude of Saturn: {
-      float(saturn_longitude):.2f} degrees.")
+print(f"\nNotes on Jupiter's dignity: ")
+
+if jupiter_in_domicile:
+    print(f"Jupiter is in its own Domicile.")
+
+if jupiter_in_exaltation:
+    print(f"Jupiter is in its own sign of Exaltation.")
+
+if jupiter_is_super_exalted:
+    print(f"Jupiter is in its super Exaltation degrees.")
+
+if jupiter_in_triplicity:
+    print(f"Jupiter is in its own Triplicity sign.")
+
+if jupiter_bound == 'Jupiter':
+    print(f"Jupiter is in its own Bound")
+
+if jupiter_decan == 'Jupiter':
+    print(f"Jupiter is in its own Decan")
+
+if jupiter_in_detriment:
+    print(f"Jupiter is in its Detriment")
+
+if jupiter_in_fall:
+    print(f"Jupiter is in its own Fall.")
+
+if not any([jupiter_in_domicile, jupiter_in_exaltation, jupiter_is_super_exalted,
+            jupiter_in_triplicity, jupiter_bound == 'Jupiter', jupiter_decan == 'Jupiter',
+            jupiter_in_detriment, jupiter_in_fall]):
+    print(f"Jupiter is Peregrine")
+
+print(f"\nSaturn ♄")
+print(f"Saturn's ecliptic longitude: {float(saturn_longitude):.2f} degrees.")
 print(f"Saturn is {float(saturn_sign_degrees):.2f} degrees in {saturn_sign}.")
+print(f"Saturn is in the bound of {saturn_bound}")
+print(f"Saturn is in the decan of {saturn_decan}")
+
+print(f"\nNotes on Saturn's dignity: ")
+
+if saturn_in_domicile:
+    print(f"Saturn is in its own Domicile.")
+
+if saturn_in_exaltation:
+    print(f"Saturn is in its own sign of Exaltation.")
+
+if saturn_is_super_exalted:
+    print(f"Saturn is in its super Exaltation degrees.")
+
+if saturn_in_triplicity:
+    print(f"Saturn is in its own Triplicity sign.")
+
+if saturn_bound == 'Saturn':
+    print(f"Saturn is in its own Bound")
+
+if saturn_decan == 'Saturn':
+    print(f"Saturn is in its own Decan")
+
+if saturn_in_detriment:
+    print(f"Saturn is in its Detriment")
+
+if saturn_in_fall:
+    print(f"Saturn is in its own Fall.")
+
+if not any([saturn_in_domicile, saturn_in_exaltation, saturn_is_super_exalted,
+            saturn_in_triplicity, saturn_bound == 'Saturn', saturn_decan == 'Saturn',
+            saturn_in_detriment, saturn_in_fall]):
+    print(f"Saturn is Peregrine")
 
 
 print(
@@ -277,6 +482,7 @@ print(
         ascendant_sign}."
 )
 
+# test
 print(
     f"\nYour selected house system: {selected_house_system}."
     f"\n{house_cusps}"
