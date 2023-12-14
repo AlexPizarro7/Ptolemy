@@ -22,11 +22,20 @@ else:
 location_latitude = selected_location.latitude
 location_longitude = selected_location.longitude
 
+chosen_date = None
+chosen_time = None
+
 # Making a jd (julian day) based on either current date or time, or a custom one
 choice = input(
     "\nWould you like to use the current date and time? (yes/no): \n")
 if choice.lower() == "yes":
-    jd, now = calculate_current_julian_day()
+    jd, now_utc = calculate_current_julian_day()
+    # Convert UTC time to local time of the chosen location
+    now_local = get_local_time_from_utc(
+        now_utc, location_latitude, location_longitude)
+
+    chosen_date = now_local.strftime('%Y-%m-%d')
+    chosen_time = now_local.strftime('%I:%M %p')
 else:
     year = int(input("Enter the year (xxxx): "))
     month = int(input("Enter the month (1-12): "))
@@ -39,8 +48,11 @@ else:
         print("Invalid input. Please enter either 'AM' or 'PM'.")
         am_pm = input("Enter either AM or PM: ").strip().upper()
 
-    jd, now = calculate_custom_julian_day(
+    jd, now_utc = calculate_custom_julian_day(
         year, month, day, hour, minute, am_pm, location_latitude, location_longitude)
+
+    chosen_date = f"{year}-{month:02d}-{day:02d}"
+    chosen_time = f"{hour:02d}:{minute:02d} {am_pm}"
 
 # Define the available house systems with enumeration for the user to choose from
 house_systems = {
@@ -212,6 +224,10 @@ saturn_in_fall = is_planet_in_its_traditional_fall('Saturn', saturn_sign)
 # Print the Report details
 
 print(f"\nAstrologial Report")
+print(f"\nLocation chosen: {selected_location.address}")
+print(f"Your chosen date: {chosen_date}")
+print(f"Your chosen time: {chosen_time}")
+print(f"Your chosen time in UTC: {now_utc.strftime('%Y-%m-%d %H:%M %p')}")
 
 print(f"\nThe Sun ☉")
 print(f"The Sun's ecliptic longitude: {float(sun_longitude):.2f} degrees.")
@@ -289,8 +305,8 @@ if not any([moon_in_domicile, moon_in_exaltation, moon_is_super_exalted,
 
 print(f"\nMercury ☿")
 print(f"Mercury's ecliptic longitude: {float(mercury_longitude):.2f} degrees.")
-print(f"Mercury is {float(mercury_sign_degrees)
-      :.2f} degrees in {mercury_sign}.")
+print(
+    f"Mercury is {float(mercury_sign_degrees):.2f} degrees in {mercury_sign}.")
 print(f"Mercury is in in the bound of {mercury_bound}")
 print(f"Mercury is in the decan of {mercury_decan}")
 
@@ -400,10 +416,9 @@ if not any([mars_in_domicile, mars_in_exaltation, mars_is_super_exalted,
     print(f"Mars is Peregrine")
 
 print(f"\nJupiter ♃")
-print(f"Jupiter's ecliptic longitude: {
-      float(jupiter_longitude):.2f} degrees.")
-print(f"Jupiter is {float(jupiter_sign_degrees)
-      :.2f} degrees in {jupiter_sign}.")
+print(f"Jupiter's ecliptic longitude: {float(jupiter_longitude):.2f} degrees.")
+print(
+    f"Jupiter is {float(jupiter_sign_degrees):.2f} degrees in {jupiter_sign}.")
 print(f"Jupiter is in the Bound of {jupiter_bound}")
 print(f"Jupiter is in the Decan of {jupiter_decan}")
 
@@ -478,8 +493,7 @@ if not any([saturn_in_domicile, saturn_in_exaltation, saturn_is_super_exalted,
 
 print(
     f"\nThe degree of the Ascendant is: {float(ascendant_longitude):.2f}"
-    f"\nThe Ascendant is {float(ascendant_sign_degrees):.2f} degrees in {
-        ascendant_sign}."
+    f"\nThe Ascendant is {float(ascendant_sign_degrees):.2f} degrees in {ascendant_sign}."
 )
 
 # test
