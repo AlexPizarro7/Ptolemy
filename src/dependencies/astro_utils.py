@@ -48,7 +48,7 @@ def get_sign_degrees(ecliptic_longitude):
 
     Raises:
     - ValueError: If the ecliptic longitude is less than 0, greater than or equal to 360, 
-                  or a non-numeric value.
+    or a non-numeric value.
 
     Examples:
     >>> get_sign_degrees(31.59)
@@ -92,10 +92,10 @@ def is_day_chart(sun_longitude, ascendant_longitude):
 
     Parameters:
     - sun_longitude (float): The ecliptic longitude of the Sun, measured in degrees (0-359.99).
-                             This value represents the Sun's position in the zodiac circle.
+    This value represents the Sun's position in the zodiac circle.
 
     - ascendant_longitude (float): The ecliptic longitude of the Ascendant, measured in degrees (0-359.99).
-                                 The Ascendant represents the eastern horizon at the time and place of birth.
+    The Ascendant represents the eastern horizon at the time and place of birth.
 
     Returns:
     - bool: True if the chart is a day chart (Sun above the horizon), False if the chart is a night chart (Sun below the horizon).
@@ -362,7 +362,7 @@ def get_traditional_decan(sign, sign_degrees):
 
     Returns:
     - str: The name of the planet ruling the decan of the given sign and degree.
-         Returns None if the sign is not recognized or if the degree is out of bounds.
+    Returns None if the sign is not recognized or if the degree is out of bounds.
 
     Note:
     The decans are assigned based on the Chaldean order.
@@ -389,6 +389,61 @@ def get_traditional_decan(sign, sign_degrees):
     return None
 
 
+def is_planet_in_its_traditional_detriment(planet, planet_sign):
+    """
+    Determines if a planet is in its sign of detriment according to traditional astrological principles.
+
+    Parameters:
+    - planet (str): The name of the planet (e.g., 'Sun', 'Moon', 'Mercury', etc.). The function currently supports classical planets including the Sun and Moon.
+    - planet_sign (str): The zodiac sign to check against the planet's detriment (e.g., 'Aries', 'Taurus', etc.).
+
+    Returns:
+    - bool: True if the planet is in its traditional detriment, False otherwise.
+    """
+
+    planet_detriments = {
+        'Sun': 'Aquarius',
+        'Moon': 'Capricorn',
+        'Mercury': ['Sagittarius', 'Pisces'],
+        'Venus': ['Aries', 'Scorpio'],
+        'Mars': ['Taurus', 'Libra'],
+        'Jupiter': ['Gemini', 'Virgo'],
+        'Saturn': ['Cancer', 'Leo']
+    }
+
+    detriment_signs = planet_detriments.get(planet)
+    if isinstance(detriment_signs, list):
+        return planet_sign in detriment_signs
+    else:
+        return planet_sign == detriment_signs
+
+
+def is_planet_in_its_traditional_fall(planet, planet_sign):
+    """
+    Determines if a planet is in its sign of fall according to traditional astrological principles.
+
+    Parameters:
+    - planet (str): The name of the planet (e.g., 'Sun', 'Moon', 'Mercury', etc.).
+    - planet_sign (str): The zodiac sign to check against the planet's fall (e.g., 'Aries', 'Taurus', etc.).
+
+    Returns:
+    - bool: True if the planet is in its traditional fall, False otherwise.
+    """
+
+    planet_falls = {
+        'Sun': 'Libra',
+        'Moon': 'Scorpio',
+        'Mercury': 'Pisces',
+        'Venus': 'Virgo',
+        'Mars': 'Cancer',
+        'Jupiter': 'Capricorn',
+        'Saturn': 'Aries',
+    }
+
+    fall_sign = planet_falls.get(planet)
+    return planet_sign == fall_sign
+
+
 def get_house_system_code(house_system_name):
     """
     Converts a house system name to the corresponding Swiss Ephemeris code.
@@ -396,10 +451,10 @@ def get_house_system_code(house_system_name):
     as a paramater, rather than the house system name directy.
 
     Args:
-        house_system_name (str): The name of the house system.
+    house_system_name (str): The name of the house system.
 
     Returns:
-        str: The corresponding Swiss Ephemeris code for the house system.
+    str: The corresponding Swiss Ephemeris code for the house system.
     """
     house_system_codes = {
         'Placidus': 'P',
