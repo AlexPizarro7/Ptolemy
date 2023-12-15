@@ -1,12 +1,9 @@
-# Imports for Geopy
 from geopy.geocoders import Nominatim
 import swisseph as swis_eph
 from datetime import datetime, timezone, timedelta
 from timezonefinder import TimezoneFinder
 import pytz
 
-
-# This function returns the coordinates of a specified city and country
 
 def get_coordinates(city, country):
     """
@@ -280,42 +277,3 @@ def calculate_house_cusps(jd, location_latitude, location_longitude, house_syste
         jd, location_latitude, location_longitude, house_system_code.encode('utf-8'))
     # The first value in the cusps array is the Ascendant, which is also the cusp of the first house
     return cusps
-
-
-def is_planet_in_retrograde(planet_name, jd, location_latitude, location_longitude):
-    """
-    In astrology, a planet is cosidered to be in retrograde when it appears to move 
-    backwards in the sky. This function calculates the planet's position on two 
-    consecutive days and checks if its ecliptic longitude decreases, indicating 
-    retrograde motion.
-
-    Parameters:
-    - planet_name (str): Name of the planet (e.g., 'Mercury', 'Venus', 'Mars').
-    - jd (float): Julian Day for the starting date of observation.
-    - location_latitude (float): Geographic latitude of the observation point in degrees.
-    - location_longitude (float): Geographic longitude of the observation point in degrees.
-
-    Returns:
-    - bool: True if the planet is in retrograde motion, False otherwise.
-    """
-
-    swis_eph.set_topo(location_longitude, location_latitude, 0)
-
-    planets = {
-        'Sun': swis_eph.SUN, 'Moon': swis_eph.MOON, 'Mercury': swis_eph.MERCURY,
-        'Venus': swis_eph.VENUS, 'Mars': swis_eph.MARS, 'Jupiter': swis_eph.JUPITER,
-        'Saturn': swis_eph.SATURN
-    }
-
-    planet = planets.get(planet_name)
-    if planet is None:
-        raise ValueError("Invalid planet name.")
-
-    # Get the planet's position for the given Julian Day
-    position1, _ = swis_eph.calc_ut(jd, planet)
-
-    # Get the planet's position for the next day
-    position2, _ = swis_eph.calc_ut(jd + 1, planet)
-
-    # Determine if the planet is in retrograde
-    return position1[0] > position2[0]

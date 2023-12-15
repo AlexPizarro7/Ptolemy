@@ -1,5 +1,6 @@
-from dependencies.astro_calculations import *
-from dependencies.astro_utils import *
+from utilities.astro_calculations import *
+from utilities.astro_utils import *
+from utilities.dignity_utils import *
 
 # Hello
 
@@ -226,7 +227,7 @@ saturn_in_fall = is_planet_in_its_traditional_fall('Saturn', saturn_sign)
 
 # Print the Report details
 
-print(f"\nAstrologial Report")
+print(f"\nAstrological Report")
 
 print(f"\nThe Sun ☉")
 print(f"The Sun's ecliptic longitude: {float(sun_longitude):.2f} degrees.")
