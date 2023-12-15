@@ -8,7 +8,6 @@ import pytz
 
 # This function returns the coordinates of a specified city and country
 
-
 def get_coordinates(city, country):
     """
     Calculates the latitude and longitude for a specified city and country using Nominatim.
@@ -99,6 +98,15 @@ def calculate_custom_julian_day(year, month, day, hour, minute, am_pm, lat, lon)
                          custom_datetime_utc.month, custom_datetime_utc.day, ut)
 
     return jd, custom_datetime_utc
+
+
+def convert_to_dms(decimal_degrees):
+    degrees = int(decimal_degrees)
+    minutes_full = (decimal_degrees - degrees) * 60
+    minutes = int(minutes_full)
+    seconds = (minutes_full - minutes) * 60
+
+    return degrees, minutes, seconds
 
 
 def calculate_ecliptic_longitude(planet_name, jd, location_latitude, location_longitude):
@@ -259,3 +267,27 @@ def calculate_house_cusps(jd, location_latitude, location_longitude, house_syste
         jd, location_latitude, location_longitude, house_system_code.encode('utf-8'))
     # The first value in the cusps array is the Ascendant, which is also the cusp of the first house
     return cusps
+
+
+def is_planet_in_retrograde(planet_name, jd, location_latitude, location_longitude):
+
+    swis_eph.set_topo(location_longitude, location_latitude, 0)
+
+    planets = {
+        'Sun': swis_eph.SUN, 'Moon': swis_eph.MOON, 'Mercury': swis_eph.MERCURY,
+        'Venus': swis_eph.VENUS, 'Mars': swis_eph.MARS, 'Jupiter': swis_eph.JUPITER,
+        'Saturn': swis_eph.SATURN
+    }
+
+    planet = planets.get(planet_name)
+    if planet is None:
+        raise ValueError("Invalid planet name.")
+
+    # Get the planet's position for the given Julian Day
+    position1, _ = swis_eph.calc_ut(jd, planet)
+
+    # Get the planet's position for the next day
+    position2, _ = swis_eph.calc_ut(jd + 1, planet)
+
+    # Determine if the planet is in retrograde
+    return position1[0] > position2[0]

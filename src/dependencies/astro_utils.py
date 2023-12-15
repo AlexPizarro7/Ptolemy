@@ -444,6 +444,22 @@ def is_planet_in_its_traditional_fall(planet, planet_sign):
     return planet_sign == fall_sign
 
 
+def is_planet_combust(planet_longitude, planet_sign, sun_longitude, sun_sign):
+    # Check if the planet is in the same sign as the Sun
+    if planet_sign != sun_sign:
+        return False
+
+    # Calculate the angular distance between the planet and the Sun
+    angular_distance = abs(planet_longitude - sun_longitude)
+
+    # Adjust for cases where the planet and the Sun are on opposite ends of the zodiac
+    if angular_distance > 180:
+        angular_distance = 360 - angular_distance
+
+    # Check if the planet is within 8.5 degrees of the Sun
+    return angular_distance < 8.5
+
+
 def get_house_system_code(house_system_name):
     """
     Converts a house system name to the corresponding Swiss Ephemeris code.

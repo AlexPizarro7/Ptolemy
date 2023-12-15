@@ -80,6 +80,9 @@ jupiter_longitude = calculate_ecliptic_longitude(
 saturn_longitude = calculate_ecliptic_longitude(
     'Saturn', jd, location_latitude, location_longitude)
 
+# Convert from degrees to DMS
+sun_longitude_dms = convert_to_dms(sun_longitude)
+
 # Calculate the ecliptic longitude of the ascendant, and its sign and sign degrees
 ascendant_longitude = calculate_ascendant(
     jd, location_latitude, location_longitude, selected_house_system_code)
@@ -216,7 +219,9 @@ saturn_in_fall = is_planet_in_its_traditional_fall('Saturn', saturn_sign)
 print(f"\nAstrologial Report")
 
 print(f"\nThe Sun ☉")
-print(f"The Sun's ecliptic longitude: {float(sun_longitude):.2f} degrees.")
+print(f"The Sun's ecliptic longitude: {sun_longitude} degrees.")
+print(f"The Sun's ecliptic longitude in DMS is {sun_longitude_dms[0]}° {
+      sun_longitude_dms[1]}' {sun_longitude_dms[2]:.2f}\"")
 print(f"The Sun is {float(sun_sign_degrees):.2f} degrees in {sun_sign}.")
 print(f"The Sun is in the Bound ruled by {sun_bound}.")
 print(f"The Sun is in the Decan ruled by {sun_decan}.")
@@ -291,7 +296,7 @@ if not any([moon_in_domicile, moon_in_exaltation, moon_is_super_exalted,
 
 print(f"\nMercury ☿")
 print(f"Mercury's ecliptic longitude: {float(mercury_longitude):.2f} degrees.")
-print(f"Mercury is {float(mercury_sign_degrees):.2f} degrees in {mercury_sign}.")
+print(f"Mercury is {float(mercury_sign_degrees)      :.2f} degrees in {mercury_sign}.")
 print(f"Mercury is in in the bound of {mercury_bound}")
 print(f"Mercury is in the decan of {mercury_decan}")
 
@@ -403,7 +408,7 @@ if not any([mars_in_domicile, mars_in_exaltation, mars_is_super_exalted,
 print(f"\nJupiter ♃")
 print(f"Jupiter's ecliptic longitude: {
       float(jupiter_longitude):.2f} degrees.")
-print(f"Jupiter is {float(jupiter_sign_degrees):.2f} degrees in {jupiter_sign}.")
+print(f"Jupiter is {float(jupiter_sign_degrees)      :.2f} degrees in {jupiter_sign}.")
 print(f"Jupiter is in the Bound of {jupiter_bound}")
 print(f"Jupiter is in the Decan of {jupiter_decan}")
 
