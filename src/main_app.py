@@ -64,7 +64,7 @@ selected_house_system = house_systems[user_choice]
 # Gets the house system code so we can use it as an argument in other functions
 selected_house_system_code = get_house_system_code(selected_house_system)
 
-# Calculate the ecliptic longitude of the planets
+# Calculate the ecliptic longitude of the planets + the lunar nodes
 sun_longitude = calculate_ecliptic_longitude(
     'Sun', jd, location_latitude, location_longitude)
 moon_longitude = calculate_ecliptic_longitude(
@@ -79,6 +79,10 @@ jupiter_longitude = calculate_ecliptic_longitude(
     'Jupiter', jd, location_latitude, location_longitude)
 saturn_longitude = calculate_ecliptic_longitude(
     'Saturn', jd, location_latitude, location_longitude)
+north_node_longitude = calculate_ecliptic_longitude(
+    'North Node', jd, location_latitude, location_longitude)
+south_node_longitude = calculate_ecliptic_longitude(
+    'South Node', jd, location_latitude, location_longitude)
 
 # Convert from degrees to DMS
 sun_longitude_dms = convert_to_dms(sun_longitude)

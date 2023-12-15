@@ -10,8 +10,6 @@ import pytz
 
 def get_coordinates(city, country):
     """
-    Calculates the latitude and longitude for a specified city and country using Nominatim.
-
     Parameters:
     - city (str): The city's name.
     - country (str): The country's name.
@@ -101,6 +99,16 @@ def calculate_custom_julian_day(year, month, day, hour, minute, am_pm, lat, lon)
 
 
 def convert_to_dms(decimal_degrees):
+    """
+    This function converts a decimal degree value to degrees, minutes, and seconds (DMS). This is a more traditional format used in astronomy and astrology.
+
+    Parameters:
+    - decimal_degrees (float): The angle in decimal degrees to be converted.
+
+    Returns:
+    - tuple: A tuple containing the degrees, minutes, and seconds (as integers) representing the original angle in DMS format.
+    """
+
     degrees = int(decimal_degrees)
     minutes_full = (decimal_degrees - degrees) * 60
     minutes = int(minutes_full)
@@ -275,6 +283,21 @@ def calculate_house_cusps(jd, location_latitude, location_longitude, house_syste
 
 
 def is_planet_in_retrograde(planet_name, jd, location_latitude, location_longitude):
+    """
+    In astrology, a planet is cosidered to be in retrograde when it appears to move 
+    backwards in the sky. This function calculates the planet's position on two 
+    consecutive days and checks if its ecliptic longitude decreases, indicating 
+    retrograde motion.
+
+    Parameters:
+    - planet_name (str): Name of the planet (e.g., 'Mercury', 'Venus', 'Mars').
+    - jd (float): Julian Day for the starting date of observation.
+    - location_latitude (float): Geographic latitude of the observation point in degrees.
+    - location_longitude (float): Geographic longitude of the observation point in degrees.
+
+    Returns:
+    - bool: True if the planet is in retrograde motion, False otherwise.
+    """
 
     swis_eph.set_topo(location_longitude, location_latitude, 0)
 

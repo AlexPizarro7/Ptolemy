@@ -92,10 +92,7 @@ def is_day_chart(sun_longitude, ascendant_longitude):
 
     Parameters:
     - sun_longitude (float): The ecliptic longitude of the Sun, measured in degrees (0-359.99).
-    This value represents the Sun's position in the zodiac circle.
-
     - ascendant_longitude (float): The ecliptic longitude of the Ascendant, measured in degrees (0-359.99).
-    The Ascendant represents the eastern horizon at the time and place of birth.
 
     Returns:
     - bool: True if the chart is a day chart (Sun above the horizon), False if the chart is a night chart (Sun below the horizon).
@@ -112,7 +109,7 @@ def is_day_chart(sun_longitude, ascendant_longitude):
 
 def is_planet_in_its_traditional_domicile(planet, planet_sign):
     """
-    Determines if a planet is in its domicile, using the traditional rulership system. This function checks whether a given planet is currently in one of its ruling signs.
+    This function determines if a planet is in its own domicile, which is the sign(s) they are considered to have rulership over. This function uses the traditional rulership system since that is what horary astrology uses. 
 
     Parameters:
     - planet (str): The name of the planet (e.g., 'Sun', 'Moon', 'Mercury', etc.).
@@ -143,7 +140,7 @@ def is_planet_in_its_traditional_domicile(planet, planet_sign):
 
 def is_planet_in_its_traditional_exaltation(planet, planet_sign):
     """
-    This function checks if a given planet is currently in its exaltation sign, using the traditional system.
+    This function checks if a given planet is currently in its exaltation sign, using the traditional rulership system.
 
     Parameters:
     - planet (str): The name of the planet (e.g., 'Sun', 'Moon', 'Mercury', etc.).
@@ -204,7 +201,7 @@ def is_planet_super_exalted(planet, planet_sign, planet_degree):
 
 def is_planet_in_its_triplicity(planet, sign, day_or_night_chart):
     """
-    This function checks if a given planet is in the sign that it has triplicity rulership over under the given condition of it being in a day chart or night chart. 
+    This function checks if a given planet is in the sign that it has triplicity rulership over under the given condition of it being in a day chart or night chart. This function uses the traditional rulership system. 
 
     Parameters:
     - planet (str): The name of the planet (e.g., 'Sun', 'Moon', 'Mercury', etc.).
@@ -213,8 +210,6 @@ def is_planet_in_its_triplicity(planet, sign, day_or_night_chart):
 
     Returns:
     - bool: True if the planet is the triplicity ruler of the sign under the given day/night condition, False otherwise.
-
-    Note:
     """
 
     triplicity_rulers = {
@@ -253,7 +248,6 @@ def get_ptolemaic_bound_ruler(sign, degree):
     Note:
     The bounds are defined based on the Ptolemaic system and vary for each sign. 
     """
-    # Dictionary structure for Aries bounds. You'll need to extend this to other signs.
     bounds = {
         'Aries': [
             (0, 6, 'Jupiter'),
@@ -354,7 +348,7 @@ def get_ptolemaic_bound_ruler(sign, degree):
 
 def get_traditional_decan(sign, sign_degrees):
     """
-    This function identifies the ruling planet of the decan for in which a planet is currently in, given the sign in question and the sign degrees the planet is in.
+    This function identifies the ruling planet of the decan for in which a planet is currently in, given the sign in question and the sign degrees the planet is in. This function uses the Chaldean order system, which is used in tradtional astrology. 
 
     Parameters:
     - sign (str): The zodiac sign (e.g., 'Aries', 'Taurus', etc.).
@@ -363,9 +357,6 @@ def get_traditional_decan(sign, sign_degrees):
     Returns:
     - str: The name of the planet ruling the decan of the given sign and degree.
     Returns None if the sign is not recognized or if the degree is out of bounds.
-
-    Note:
-    The decans are assigned based on the Chaldean order.
     """
 
     decans = {
@@ -391,7 +382,7 @@ def get_traditional_decan(sign, sign_degrees):
 
 def is_planet_in_its_traditional_detriment(planet, planet_sign):
     """
-    Determines if a planet is in its sign of detriment according to traditional astrological principles.
+    Determines if a planet is in its sign of detriment according to the traditional rulership system.
 
     Parameters:
     - planet (str): The name of the planet (e.g., 'Sun', 'Moon', 'Mercury', etc.). The function currently supports classical planets including the Sun and Moon.
@@ -420,7 +411,7 @@ def is_planet_in_its_traditional_detriment(planet, planet_sign):
 
 def is_planet_in_its_traditional_fall(planet, planet_sign):
     """
-    Determines if a planet is in its sign of fall according to traditional astrological principles.
+    Determines if a planet is in its sign of fall according to the traditional rulership system. 
 
     Parameters:
     - planet (str): The name of the planet (e.g., 'Sun', 'Moon', 'Mercury', etc.).
@@ -445,6 +436,19 @@ def is_planet_in_its_traditional_fall(planet, planet_sign):
 
 
 def is_planet_combust(planet_longitude, planet_sign, sun_longitude, sun_sign):
+    """
+    In horary astrology, a planet is considered combust when it is within 8.5 degrees of the Sun, and in the same zodiac sign as the sun. This function checks if a planet meets these conditions. 
+
+    Parameters:
+    - planet_longitude (float): The ecliptic longitude of the planet in degrees.
+    - planet_sign (str): The zodiac sign in which the planet is located.
+    - sun_longitude (float): The ecliptic longitude of the Sun in degrees.
+    - sun_sign (str): The zodiac sign in which the Sun is located.
+
+    Returns:
+    - bool: True if the planet is combust, False otherwise.
+    """
+
     # Check if the planet is in the same sign as the Sun
     if planet_sign != sun_sign:
         return False
@@ -461,6 +465,19 @@ def is_planet_combust(planet_longitude, planet_sign, sun_longitude, sun_sign):
 
 
 def is_planet_cazimi(planet_longitude, planet_sign, sun_longitude, sun_sign):
+    """
+    In horary astrology, a planet is considered to be in cazimi when it is within 17.5 minutes (or 0.2916667 degrees) of the Sun's position. 
+
+    Parameters:
+    - planet_longitude (float): The ecliptic longitude of the planet in degrees.
+    - planet_sign (str): The zodiac sign in which the planet is located.
+    - sun_longitude (float): The ecliptic longitude of the Sun in degrees.
+    - sun_sign (str): The zodiac sign in which the Sun is located.
+
+    Returns:
+    - bool: True if the planet is in cazimi, False otherwise.
+    """
+
     # Check if the planet and the Sun are in the same zodiac sign
     if planet_sign != sun_sign:
         return False
