@@ -111,16 +111,16 @@ def convert_to_dms(decimal_degrees):
 
 def calculate_ecliptic_longitude(planet_name, jd, location_latitude, location_longitude):
     """
-    Calculates the ecliptic longitude of a specified planet for a given Julian Day (JD).
+    Calculates the ecliptic longitude of a specified planet or Lunar Node for a given Julian Day (JD).
 
     Parameters:
-    - planet_name (str): Name of the planet (e.g., 'Sun', 'Moon', 'Mars').
+    - planet_name (str): Name of the planet or Lunar Node (e.g., 'Sun', 'Moon', 'Mars', 'North Node', 'South Node').
     - jd (float): Julian Day for which to perform the calculation.
     - location_latitude (float): Geographic latitude of the observation point in degrees.
     - location_longitude (float): Geographic longitude of the observation point in degrees.
 
     Returns:
-    - float: Ecliptic longitude of the planet in degrees.
+    - float: Ecliptic longitude of the planet or Lunar Node in degrees.
     """
 
     PLANETS = {
@@ -131,22 +131,27 @@ def calculate_ecliptic_longitude(planet_name, jd, location_latitude, location_lo
         'Mars': swis_eph.MARS,
         'Jupiter': swis_eph.JUPITER,
         'Saturn': swis_eph.SATURN,
-        'Uranus': swis_eph.URANUS,
-        'Neptune': swis_eph.NEPTUNE,
-        'Pluto': swis_eph.PLUTO
+        'North Node': swis_eph.MEAN_NODE,  # or swis_eph.TRUE_NODE
+        'South Node': 'South Node'  # Placeholder,
     }
 
     if planet_name not in PLANETS:
-        raise ValueError(f"'{planet_name}' is not a recognized planet.")
-
-    planet_id = PLANETS[planet_name]
+        raise ValueError(
+            f"'{planet_name}' is not a recognized planet or Lunar Node.")
 
     # Set the topocentric flag and location
     flag = swis_eph.FLG_TOPOCTR
     swis_eph.set_topo(location_longitude, location_latitude, 0)
-    xx, _ = swis_eph.calc_ut(jd, planet_id, flag)
 
-    ecliptic_longitude = xx[0]
+    if planet_name == 'South Node':
+        # Calculate North Node and adjust for South Node
+        north_node_longitude, _ = swis_eph.calc_ut(
+            jd, swis_eph.MEAN_NODE, flag)
+        ecliptic_longitude = (north_node_longitude + 180) % 360
+    else:
+        planet_id = PLANETS[planet_name]
+        xx, _ = swis_eph.calc_ut(jd, planet_id, flag)
+        ecliptic_longitude = xx[0]
 
     return ecliptic_longitude
 
