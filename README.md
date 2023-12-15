@@ -5,7 +5,7 @@ Ptolemy is an evolving Python-based astrology software, currently in its develop
 
 Ptolemy aims to remain completely free and accessible to anyone. Unlike other traditional astrology software options, Ptolemy is focused on helping individuals not just visualize astrological charts but primarily analyze their data and understand the astrological principles of horary astrology in order to successfully interpret horary charts.
 
-## Feautres
+## Features
 - **User-Friendly Input:** Simple interface for entering city, country, date, and time to generate a detailed astrological report.
 - **GeoPy Integration:** Employs GeoPy for accurate geographical data input, enhancing location-based calculations.
 - **Planetary Positions:** Leverages Swisseph to calculate precise planetary alignments for any given date and time.
