@@ -82,6 +82,12 @@ saturn_longitude = calculate_ecliptic_longitude(
 
 # Convert from degrees to DMS
 sun_longitude_dms = convert_to_dms(sun_longitude)
+moon_longitude_dms = convert_to_dms(moon_longitude)
+mercury_longitude_dms = convert_to_dms(mercury_longitude)
+venus_longitude_dms = convert_to_dms(venus_longitude)
+mars_longitude_dms = convert_to_dms(mars_longitude)
+jupiter_longitude_dms = convert_to_dms(jupiter_longitude)
+saturn_longitude_dms = convert_to_dms(saturn_longitude)
 
 # Calculate the ecliptic longitude of the ascendant, and its sign and sign degrees
 ascendant_longitude = calculate_ascendant(
@@ -219,7 +225,7 @@ saturn_in_fall = is_planet_in_its_traditional_fall('Saturn', saturn_sign)
 print(f"\nAstrologial Report")
 
 print(f"\nThe Sun ☉")
-print(f"The Sun's ecliptic longitude: {sun_longitude} degrees.")
+print(f"The Sun's ecliptic longitude: {float(sun_longitude):.2f} degrees.")
 print(f"The Sun's ecliptic longitude in DMS is {sun_longitude_dms[0]}° {
       sun_longitude_dms[1]}' {sun_longitude_dms[2]:.2f}\"")
 print(f"The Sun is {float(sun_sign_degrees):.2f} degrees in {sun_sign}.")

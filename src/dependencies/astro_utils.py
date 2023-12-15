@@ -460,6 +460,20 @@ def is_planet_combust(planet_longitude, planet_sign, sun_longitude, sun_sign):
     return angular_distance < 8.5
 
 
+def is_planet_cazimi(planet_longitude, planet_sign, sun_longitude, sun_sign):
+    # Check if the planet and the Sun are in the same zodiac sign
+    if planet_sign != sun_sign:
+        return False
+
+    # Calculate the absolute difference in longitude
+    longitude_difference = abs(planet_longitude - sun_longitude)
+
+    # Check if the planet is within 0.2916667 degrees (17.5 minutes) of the Sun
+    # Note that other sources say Cazimi is when the planet is within 1 degree of the Sun
+    cazimi_threshold = 0.2916667
+    return longitude_difference <= cazimi_threshold
+
+
 def get_house_system_code(house_system_name):
     """
     Converts a house system name to the corresponding Swiss Ephemeris code.
