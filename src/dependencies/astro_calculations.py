@@ -22,7 +22,8 @@ def get_coordinates(city, country):
             longitude, and address. If no matches are found, returns None.
     """
     geolocator = Nominatim(user_agent="AstrologyAppProject")
-    locations = geolocator.geocode(f"{city}, {country}", exactly_one=False)
+    locations = geolocator.geocode(
+        f"{city}, {country}", exactly_one=False, language='en')
     return locations
 
 

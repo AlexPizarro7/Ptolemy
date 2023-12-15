@@ -487,5 +487,3 @@ print(
     f"\nYour selected house system: {selected_house_system}."
     f"\n{house_cusps}"
 )
-
-print("This is a previous version")
