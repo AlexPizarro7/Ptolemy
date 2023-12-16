@@ -1,3 +1,4 @@
+import datetime
 
 
 def get_zodiac_sign(ecliptic_longitude):
@@ -106,6 +107,40 @@ def is_day_chart(sun_longitude, ascendant_longitude):
         return ascendant_longitude <= sun_longitude < descendant_longitude
     else:
         return sun_longitude < descendant_longitude or sun_longitude >= ascendant_longitude
+
+
+def get_planetary_ruler_of_the_day(year, month, day):
+    """
+    Determines the planetary ruler of the day.
+
+    Parameters:
+    - year (int): The year component of the date.
+    - month (int): The month component of the date.
+    - day (int): The day component of the date.
+
+    Returns:
+    - str: The name of the planet that rules the given day.
+    """
+
+    # Mapping of weekday to its ruling planet
+    weekday_planet_map = {
+        0: 'Moon',    # Monday
+        1: 'Mars',    # Tuesday
+        2: 'Mercury',  # Wednesday
+        3: 'Jupiter',  # Thursday
+        4: 'Venus',   # Friday
+        5: 'Saturn',  # Saturday
+        6: 'Sun'      # Sunday
+    }
+
+    # Create a date object
+    date_obj = datetime.date(year, month, day)
+
+    # Get the day of the week as an integer (Monday is 0, Sunday is 6)
+    weekday = date_obj.weekday()
+
+    # Return the planetary ruler
+    return weekday_planet_map[weekday]
 
 
 def get_ptolemaic_bound_ruler(sign, degree):

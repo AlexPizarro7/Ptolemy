@@ -44,7 +44,7 @@ def calculate_current_julian_day():
     return jd, now
 
 
-def calculate_custom_julian_day(year, month, day, hour, minute, am_pm, lat, lon):
+def calculate_custom_julian_day(year, month, day, hour, minute, second, lat, lon):
     """
     Calculates the Julian Day Number (JDN) for a custom date and time, adjusted for a specific location's timezone.
 
@@ -52,9 +52,9 @@ def calculate_custom_julian_day(year, month, day, hour, minute, am_pm, lat, lon)
     - year (int): The year component of the date.
     - month (int): The month component of the date.
     - day (int): The day component of the date.
-    - hour (int): The hour component of the time.
+    - hour (int): The hour component of the time (24-hour format).
     - minute (int): The minute component of the time.
-    - am_pm (str): A string indicating whether the time is 'AM' or 'PM'.
+    - second (int): The seconds component of the time.
     - lat (float): The latitude of the location.
     - lon (float): The longitude of the location.
 
@@ -62,13 +62,8 @@ def calculate_custom_julian_day(year, month, day, hour, minute, am_pm, lat, lon)
     - float: The Julian Day Number representing the given date and time in UTC.
     """
 
-    if am_pm == "PM" and hour != 12:
-        hour += 12
-    elif am_pm == "AM" and hour == 12:
-        hour = 0
-
-    # Create a naive datetime object
-    custom_datetime = datetime(year, month, day, hour, minute)
+    # Create a naive datetime object including seconds
+    custom_datetime = datetime(year, month, day, hour, minute, second)
 
     # Find the timezone of the given location
     tf = TimezoneFinder()
@@ -87,7 +82,8 @@ def calculate_custom_julian_day(year, month, day, hour, minute, am_pm, lat, lon)
     custom_datetime_utc = custom_datetime.astimezone(pytz.utc)
 
     # Use the adjusted hour value directly
-    ut = custom_datetime_utc.hour + custom_datetime_utc.minute / 60.0
+    ut = custom_datetime_utc.hour + custom_datetime_utc.minute / \
+        60.0 + custom_datetime_utc.second / 3600.0
 
     jd = swis_eph.julday(custom_datetime_utc.year,
                          custom_datetime_utc.month, custom_datetime_utc.day, ut)
@@ -136,11 +132,10 @@ def calculate_ecliptic_longitude(planet_name, jd, location_latitude, location_lo
         'Mars': swis_eph.MARS,
         'Jupiter': swis_eph.JUPITER,
         'Saturn': swis_eph.SATURN,
-        'North Node': swis_eph.MEAN_NODE,  # or swis_eph.TRUE_NODE
-        'South Node': 'South Node'  # Placeholder,
+        'North Node': swis_eph.MEAN_NODE  # or swis_eph.TRUE_NODE
     }
 
-    if planet_name not in PLANETS:
+    if planet_name not in PLANETS and planet_name != 'South Node':
         raise ValueError(
             f"'{planet_name}' is not a recognized planet or Lunar Node.")
 
@@ -150,13 +145,13 @@ def calculate_ecliptic_longitude(planet_name, jd, location_latitude, location_lo
 
     if planet_name == 'South Node':
         # Calculate North Node and adjust for South Node
-        north_node_longitude, _ = swis_eph.calc_ut(
-            jd, swis_eph.MEAN_NODE, flag)
+        north_node_data, _ = swis_eph.calc_ut(jd, swis_eph.MEAN_NODE, flag)
+        north_node_longitude = north_node_data[0]  # Extract the longitude
         ecliptic_longitude = (north_node_longitude + 180) % 360
     else:
         planet_id = PLANETS[planet_name]
-        xx, _ = swis_eph.calc_ut(jd, planet_id, flag)
-        ecliptic_longitude = xx[0]
+        planet_data, _ = swis_eph.calc_ut(jd, planet_id, flag)
+        ecliptic_longitude = planet_data[0]  # Extract the longitude
 
     return ecliptic_longitude
 

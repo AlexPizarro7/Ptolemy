@@ -3,7 +3,6 @@ from utilities.astro_utils import *
 from utilities.dignity_utils import *
 
 # Hello
-
 print("\nWelcome to Ptolemy. The free Astrology software.")
 
 # Ask for a city and country anywhere in the world
@@ -26,24 +25,19 @@ location_latitude = selected_location.latitude
 location_longitude = selected_location.longitude
 
 # Making a jd (julian day) based on either current date or time, or a custom one
-choice = input(
-    "\nWould you like to use the current date and time? (yes/no): \n")
-if choice.lower() == "yes":
-    jd, now = calculate_current_julian_day()
-else:
-    year = int(input("Enter the year (xxxx): "))
-    month = int(input("Enter the month (1-12): "))
-    day = int(input("Enter the day (1-31): "))
-    hour = int(input("Enter the hour (1-12): "))
-    minute = int(input("Enter the minute (0-59): "))
-    am_pm = input("Enter either AM or PM: ").strip().upper()
+# Ask the user to input a custom date and time in the specified order
+print("\nPlease enter the date and time (24 hour format) for the Horary chart")
+day = int(input("Enter the day (1-31): "))
+month = int(input("Enter the month (1-12): "))
+year = int(input("Enter the year (xxxx): "))
+hour = int(input("Enter the hour (0-23): "))
+minute = int(input("Enter the minute (0-59): "))
+second = int(input("Enter the seconds (0-59): "))
 
-    while am_pm not in ["AM", "PM"]:
-        print("Invalid input. Please enter either 'AM' or 'PM'.")
-        am_pm = input("Enter either AM or PM: ").strip().upper()
+# Calculate the Julian Day for the entered date and time
+jd, custom_datetime_utc = calculate_custom_julian_day(
+    year, month, day, hour, minute, second, location_latitude, location_longitude)
 
-    jd, now = calculate_custom_julian_day(
-        year, month, day, hour, minute, am_pm, location_latitude, location_longitude)
 
 # Define the available house systems with enumeration for the user to choose from
 house_systems = {
@@ -106,6 +100,9 @@ house_cusps = calculate_house_cusps(
 
 # Determines if day or night chart
 chart_time_type = is_day_chart(sun_longitude, ascendant_longitude)
+
+# determines planetary ruler of the day
+ruler_of_the_day = get_planetary_ruler_of_the_day(year, month, day)
 
 # Calculation of what zodiac signs the planets are in
 sun_sign = get_zodiac_sign(sun_longitude)
@@ -229,6 +226,8 @@ saturn_in_fall = is_planet_in_its_traditional_fall('Saturn', saturn_sign)
 
 print(f"\nAstrological Report")
 
+print(f"\nThe ruler of the day is {ruler_of_the_day}.")
+
 print(f"\nThe Sun ☉")
 print(f"The Sun's ecliptic longitude: {float(sun_longitude):.2f} degrees.")
 print(f"The Sun's ecliptic longitude in DMS is {sun_longitude_dms[0]}° {
@@ -307,7 +306,8 @@ if not any([moon_in_domicile, moon_in_exaltation, moon_is_super_exalted,
 
 print(f"\nMercury ☿")
 print(f"Mercury's ecliptic longitude: {float(mercury_longitude):.2f} degrees.")
-print(f"Mercury is {float(mercury_sign_degrees)      :.2f} degrees in {mercury_sign}.")
+print(f"Mercury is {float(mercury_sign_degrees)
+      :.2f} degrees in {mercury_sign}.")
 print(f"Mercury is in in the bound of {mercury_bound}")
 print(f"Mercury is in the decan of {mercury_decan}")
 
@@ -419,7 +419,8 @@ if not any([mars_in_domicile, mars_in_exaltation, mars_is_super_exalted,
 print(f"\nJupiter ♃")
 print(f"Jupiter's ecliptic longitude: {
       float(jupiter_longitude):.2f} degrees.")
-print(f"Jupiter is {float(jupiter_sign_degrees)      :.2f} degrees in {jupiter_sign}.")
+print(f"Jupiter is {float(jupiter_sign_degrees)
+      :.2f} degrees in {jupiter_sign}.")
 print(f"Jupiter is in the Bound of {jupiter_bound}")
 print(f"Jupiter is in the Decan of {jupiter_decan}")
 
