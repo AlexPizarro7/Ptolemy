@@ -3,6 +3,7 @@ import swisseph as swis_eph
 from datetime import datetime, timezone, timedelta
 from timezonefinder import TimezoneFinder
 import pytz
+import ephem
 
 
 def get_coordinates(city, country):

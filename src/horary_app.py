@@ -101,8 +101,9 @@ house_cusps = calculate_house_cusps(
 # Determines if day or night chart
 chart_time_type = is_day_chart(sun_longitude, ascendant_longitude)
 
-# determines planetary ruler of the day
+# Determines the planetary ruler of the day
 ruler_of_the_day = get_planetary_ruler_of_the_day(year, month, day)
+
 
 # Calculation of what zodiac signs the planets are in
 sun_sign = get_zodiac_sign(sun_longitude)
@@ -226,7 +227,7 @@ saturn_in_fall = is_planet_in_its_traditional_fall('Saturn', saturn_sign)
 
 print(f"\nAstrological Report")
 
-print(f"\nThe ruler of the day is {ruler_of_the_day}.")
+print(f"\nRuler of the day: {ruler_of_the_day}.")
 
 print(f"\nThe Sun ☉")
 print(f"The Sun's ecliptic longitude: {float(sun_longitude):.2f} degrees.")
@@ -306,8 +307,7 @@ if not any([moon_in_domicile, moon_in_exaltation, moon_is_super_exalted,
 
 print(f"\nMercury ☿")
 print(f"Mercury's ecliptic longitude: {float(mercury_longitude):.2f} degrees.")
-print(f"Mercury is {float(mercury_sign_degrees)
-      :.2f} degrees in {mercury_sign}.")
+print(f"Mercury is {float(mercury_sign_degrees):.2f} degrees in {mercury_sign}.")
 print(f"Mercury is in in the bound of {mercury_bound}")
 print(f"Mercury is in the decan of {mercury_decan}")
 
@@ -419,8 +419,7 @@ if not any([mars_in_domicile, mars_in_exaltation, mars_is_super_exalted,
 print(f"\nJupiter ♃")
 print(f"Jupiter's ecliptic longitude: {
       float(jupiter_longitude):.2f} degrees.")
-print(f"Jupiter is {float(jupiter_sign_degrees)
-      :.2f} degrees in {jupiter_sign}.")
+print(f"Jupiter is {float(jupiter_sign_degrees):.2f} degrees in {jupiter_sign}.")
 print(f"Jupiter is in the Bound of {jupiter_bound}")
 print(f"Jupiter is in the Decan of {jupiter_decan}")
 

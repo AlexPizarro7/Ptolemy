@@ -5,6 +5,7 @@ click==8.1.7
 colorama==0.4.6
 contourpy==1.1.1
 cycler==0.12.1
+ephem==4.1.5
 Flask==3.0.0
 fonttools==4.43.1
 geographiclib==2.0
@@ -24,6 +25,7 @@ pyparsing==3.1.1
 pyswisseph==2.10.3.2
 python-dateutil==2.8.2
 pytz==2023.3.post1
+setuptools==69.0.2
 sgp4==2.22
 six==1.16.0
 skyfield==1.46
