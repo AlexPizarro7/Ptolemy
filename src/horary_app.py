@@ -104,6 +104,7 @@ chart_time_type = is_day_chart(sun_longitude, ascendant_longitude)
 # Determines the planetary ruler of the day
 ruler_of_the_day = get_planetary_ruler_of_the_day(year, month, day)
 
+
 # Calculation of what zodiac signs the planets are in
 sun_sign = get_zodiac_sign(sun_longitude)
 moon_sign = get_zodiac_sign(moon_longitude)
