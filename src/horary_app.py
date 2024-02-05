@@ -231,8 +231,6 @@ print(f"\nRuler of the day: {ruler_of_the_day}.")
 
 print(f"\nThe Sun ☉")
 print(f"The Sun's ecliptic longitude: {float(sun_longitude):.2f} degrees.")
-print(f"The Sun's ecliptic longitude in DMS is {sun_longitude_dms[0]}° {
-      sun_longitude_dms[1]}' {sun_longitude_dms[2]:.2f}\"")
 print(f"The Sun is {float(sun_sign_degrees):.2f} degrees in {sun_sign}.")
 print(f"The Sun is in the Bound ruled by {sun_bound}.")
 print(f"The Sun is in the Decan ruled by {sun_decan}.")
@@ -307,7 +305,8 @@ if not any([moon_in_domicile, moon_in_exaltation, moon_is_super_exalted,
 
 print(f"\nMercury ☿")
 print(f"Mercury's ecliptic longitude: {float(mercury_longitude):.2f} degrees.")
-print(f"Mercury is {float(mercury_sign_degrees):.2f} degrees in {mercury_sign}.")
+print(
+    f"Mercury is {float(mercury_sign_degrees):.2f} degrees in {mercury_sign}.")
 print(f"Mercury is in in the bound of {mercury_bound}")
 print(f"Mercury is in the decan of {mercury_decan}")
 
@@ -417,9 +416,9 @@ if not any([mars_in_domicile, mars_in_exaltation, mars_is_super_exalted,
     print(f"Mars is Peregrine")
 
 print(f"\nJupiter ♃")
-print(f"Jupiter's ecliptic longitude: {
-      float(jupiter_longitude):.2f} degrees.")
-print(f"Jupiter is {float(jupiter_sign_degrees):.2f} degrees in {jupiter_sign}.")
+print(f"Jupiter's ecliptic longitude: {float(jupiter_longitude):.2f} degrees.")
+print(
+    f"Jupiter is {float(jupiter_sign_degrees):.2f} degrees in {jupiter_sign}.")
 print(f"Jupiter is in the Bound of {jupiter_bound}")
 print(f"Jupiter is in the Decan of {jupiter_decan}")
 
@@ -494,8 +493,7 @@ if not any([saturn_in_domicile, saturn_in_exaltation, saturn_is_super_exalted,
 
 print(
     f"\nThe degree of the Ascendant is: {float(ascendant_longitude):.2f}"
-    f"\nThe Ascendant is {float(ascendant_sign_degrees):.2f} degrees in {
-        ascendant_sign}."
+    f"\nThe Ascendant is {float(ascendant_sign_degrees):.2f} degrees in {ascendant_sign}."
 )
 
 # test
